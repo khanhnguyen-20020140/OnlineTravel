@@ -1,0 +1,608 @@
+
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>Anywhere </title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="scss/music.css">      
+        <link rel="stylesheet" href="scss/main.css">
+        
+        <link rel="stylesheet" href="scss/videosuggest.css">
+        <link rel="stylesheet" href="scss/style.css">
+        <link rel="stylesheet" href="scss/user.css">
+        <!-- <script src="https://kit.fontawesome.com/fda8a73a92.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-auto-a11y="true" ></script> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        
+
+        <!-- <link rel="stylesheet" href="icon\css\all.min.css"> -->
+        <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+
+    </head>
+
+    <body >
+
+        <div class="header">
+            
+            <div class="header-item header__signin sign-in">
+                <!-- <a class="sign">Đăng nhập</a> -->
+                <a id="login-show" class="login" href="#login" >Đăng nhập</a>
+
+                    <!-- The Modal -->
+                <div id="myModal-login" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span class="close">&times;</span>
+                        </div>
+                        <h2>Login with Email</h2>
+                        <div class="login-form">
+                            <form class="form" method="post" action= "http://localhost:3000/api/user/login">
+                                    <input type="email" type="hidden" name="username" class="form-user" id="email" placeholder="Enter email">
+                                    <input type="password" name="password" class="form-password" id="password" placeholder="Password">
+                                    <button type="submit" id="submit">login</button>
+                                    <h3 class="message" id="message-login" style="color: brown;
+                                    font-size: 25px;"></h3>
+                                    <p id="suggest" href = "">You have account? register</p>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+                    <!-- <a class="nav-link" href="/api/user/login">Login</a> -->
+            </div>
+
+            <div class="header-item header__signin sign-up">
+                <a id="register-show" href="#register">Đăng ký</a>
+
+                <div id="myModal-register" class="modal">
+
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span class="close">&times;</span>
+                        </div>
+                        <h2>Register with Email</h2>
+                        <div class="login-form">
+                            <form class="form" method="post" action="http://localhost:3000/api/user/register">
+                                    <input type="email" name="userRegister" class="form-email" id="email" placeholder="Enter email" required>
+                                    <input type="password" name="passwordR" class="form-passwordR" id="passwordR" placeholder="Password" required>
+                                    <input type="password" name="passwordRA" class="form-passwordRAgain" id="passwordRA" placeholder="Password" required>
+                                    <h3 class="message" id="message-register" style="color: brown;
+                                    font-size: 30px;"></h3>
+                                    <button>register</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <script>
+                    if(localStorage.getItem('token')){
+                        document.getElementById('login-show').style.display = 'none';
+                        document.getElementById('register-show').style.display = 'none';
+                        var header = document.getElementsByClassName("header");
+                        const htmls = `  
+                        <div class="dropdown">
+                            <button onclick="myFunction()" class="dropbtn">${localStorage.getItem('user')}</button>
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="#home">Home</a>
+                                <a href="#about">About</a>
+                                <a href="#" id="logout" >Log out</a>
+                                <a href="#contact">Contact</a>
+                            </div>
+                        </div>`
+                    
+                        header[0].innerHTML = htmls;
+
+                        //log out user
+                    
+                        document.getElementById('logout').addEventListener('click', async function(){
+
+                            try {
+                                const response = await fetch('http://localhost:3000/api/user/logout', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                                    },
+                                    body: JSON.stringify({
+                                        token: localStorage.getItem('token'),
+                                        id : localStorage.getItem('id')
+                                    })
+                                });
+                                const data = await response.json();
+                                if(data.token === null){
+                                    localStorage.removeItem('token');
+                                    localStorage.removeItem('user');
+                                    localStorage.removeItem('id');
+                                    return window.location.href = 'http://127.0.0.1:5500/FE/index.html?';
+                                }
+                            } catch (error) {
+                                console.log(error);
+                            }
+                        });
+                        function myFunction() {
+                            document.getElementById("myDropdown").classList.toggle("show");
+                        }
+                    } else {
+                        document.getElementById('login-show').style.display = 'flex';
+                        document.getElementById('register-show').style.display = 'flex';
+                    }
+            </script>
+
+        </div>
+
+
+        <!-- Noi dung -->
+        <div class="all video" onmouseleave="disappeared()" onmouseenter="appeared()">
+            <div class="background"> 
+                <div class="check video__check">
+
+                    <video height="100%" width="100%"  id="video"  autoplay muted loop controls>
+                           
+                        <source id="change" src="https://www.dropbox.com/s/shpunnlrynjhds9/%5BIU%5D%20Blueming%20Live%20Clip%20%282019%20IU%20Tour%20Concert%20%27Love%2C%20poem%27%29.mp4?raw=1">
+                    </video>
+                    
+
+                    <div class="picker video__picker" id="picker"  >
+                        <!-- onmouseenter="appear()" onmouseleave="disappear()" -->
+                        <div class="pick video__pick" id="pick"> 
+                                <div class="menu-item beachselect" id="beach1">
+                                    <div class="beach">
+                                        <div class="beach-title video__title" onclick="beach()">
+                                            <h1>
+                                                Beach
+                                            </h1>
+                                        </div>
+                                        <div class="menu-beach">
+                                            <div class="beach-item beach1" onclick="beach1()">
+                                                <h1 style="font-weight:lighter;">Beach1</h1>
+                                            </div>
+                                            <div class="beach-item beach2" onclick="beach2()"><h1  style="font-weight:lighter;">Beach2</h1></div>
+                                            <div class="beach-item beach3" onclick="beach3()"><h1 style="font-weight:lighter;">Beach3</h1></div>
+                                                                                              
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="menu-item forestselect" id="forest1">
+                                    <div class="forest">
+                                        <div class="forest-title video__title" onclick="forest()">
+                                            <h1>
+                                                Forest
+                                            </h1>
+                                        </div>
+                                        <div class="menu-forest">
+                                            <div class="forest-item forest1" onclick="forest1()">
+                                                <h1 style="font-weight:lighter;">Amazon</h1>
+                                            </div>
+                                            <div class="forest-item forest2" onclick="forest2()"><h1  style="font-weight:lighter;"> Wildlife </h1></div>
+                                            <div class="forest-item forest3" onclick="forest3()"><h1 style="font-weight:lighter;">Rain Walk</h1></div>
+                                                                                              
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="menu-item cityselect" id="city1">
+                                    <div class="city">
+                                        <div class="city-title video__title" onclick="city()">
+                                            <h1>
+                                                City
+                                            </h1>
+                                        </div>
+                                        <div class="menu-city">
+                                            <div class="city-item city1" onclick="city1()">
+                                                <h1 style="font-weight:lighter;">Jakartan</h1>
+                                            </div>
+                                            <div class="city-item city2" onclick="city2()"><h1  style="font-weight:lighter;">Shanghai</h1></div>
+                                            <div class="city-item city3" onclick="city3()"><h1 style="font-weight:lighter;">Ho Chi Minh</h1></div>
+                                                                                              
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+
+                                <div class="menu-item holidayselect" id="holiday1">
+                                    <div class="holiday">
+                                        <div class="holiday-title video__title" onclick="holiday()">
+                                            <h1>
+                                                Holiday
+                                            </h1>
+                                        </div>
+                                        <div class="menu-holiday">
+                                            <div class="holiday-item holiday1" onclick="holiday1()">
+                                                <h1 style="font-weight:lighter;">Holiday1</h1>
+                                            </div>
+                                            <div class="holiday-item holiday2" onclick="holiday2()"><h1  style="font-weight:lighter;">Holiday2</h1></div>
+                                            <div class="holiday-item holiday3" onclick="holiday3()"><h1 style="font-weight:lighter;">Holiday3</h1></div>
+                                                                                              
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="menu-item spaceselect" id="space1">
+                                    <div class="space">
+                                        <div class="space-title video__title" onclick="space()">
+                                            <h1>
+                                                Space
+                                            </h1>
+                                        </div>
+                                        <div class="menu-space">
+                                            <div class="space-item space1" onclick="space1()">
+                                                <h1 style="font-weight:lighter;">Space1</h1>
+                                            </div>
+                                            <div class="space-item space2" onclick="space2()"><h1  style="font-weight:lighter;">Space2</h1></div>
+                                            <div class="space-item space3" onclick="space3()"><h1 style="font-weight:lighter;">Space3</h1></div>
+                                                                                              
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="menu-item rainselect" id="rain1">
+                                    <div class="rain">
+                                        <div class="rain-title video__title" onclick="rain()">
+                                            <h1>
+                                                Rain
+                                            </h1>
+                                        </div>
+                                        <div class="menu-rain">
+                                            <div class="rain-item rain1" onclick="rain1()">
+                                                <h1 style="font-weight:lighter;">Rain1</h1>
+                                            </div>
+                                            <div class="rain-item rain2" onclick="rain2()"><h1  style="font-weight:lighter;">Rain2</h1></div>
+                                            <div class="rain-item rain3" onclick="rain3()"><h1 style="font-weight:lighter;">Rain3</h1></div>
+                                                                                              
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="menu-item cafeselect" id="cafe1">
+                                    <div class="cafe">
+                                        <div class="cafe-title video__title" onclick="cafe()">
+                                            <h1>
+                                                Cafe
+                                            </h1>
+                                        </div>
+                                        <div class="menu-cafe">
+                                            <div class="cafe-item cafe1" onclick="cafe1()">
+                                                <h1 style="font-weight:lighter;">Cafe1</h1>
+                                            </div>
+                                            <div class="cafe-item cafe2" onclick="cafe2()"><h1  style="font-weight:lighter;">Cafe2</h1></div>
+                                            <div class="cafe-item cafe3" onclick="cafe3()"><h1 style="font-weight:lighter;">Cafe3</h1></div>
+                                                                                              
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="menu-item codingselect" id="coding1">
+                                    <div class="coding">
+                                        <div class="coding-title video__title" onclick="coding()">
+                                            <h1>
+                                                Coding
+                                            </h1>
+                                        </div>
+                                        <div class="menu-coding">
+                                            <div class="coding-item coding1" onclick="coding1()">
+                                                <h1 style="font-weight:lighter;">Coding1</h1>
+                                            </div>
+                                            <div class="coding-item coding2" onclick="coding2()"><h1  style="font-weight:lighter;">Coding2</h1></div>
+                                            <div class="coding-item coding3" onclick="coding3()"><h1 style="font-weight:lighter;">Coding3</h1></div>
+                                                                                              
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                                
+                            </div>     
+                        </div>                       
+                    </div>
+                    
+                    <!-- <iframe  src="https://youtube.com/embed/Lt-U_t2pUHI?autoplay=1&controls=0" width="100%" height="500px" name="the-iFrame" frameborder="0"  allowfullscreen volume="0">
+                    </iframe> -->
+
+                    <div class="music" style="color: black; font-size: 1em;cursor: pointer;" >
+                        <i class="fa-solid fa-compact-disc" id="icon" onclick="music()" ondblclick="dismusic()"></i>                    
+                        
+                        <div class="selection" id="selection" style="color: white">
+                            <div class="list" style="padding: 13px;" onclick="list()">
+                                <h3>Our List</h3>
+                            </div>
+                            <div class="history" style="padding: 13px;" onclick="history()">
+                                <h3>History</h3>
+                            </div>
+                            <div class="favorite" style="padding: 13px;" onclick="yourlist()">
+                                <h3>Your List</h3>
+                            </div>
+                        </div>                        
+                    
+                    
+                        <div class="player" style="cursor: pointer;" id="player">
+                            <div class="dashboard">
+                                
+                                <header>
+                                    <h4 style="text-align:center;display: flex;align-items:baseline;justify-content: center;color:red;font-size: 0.75em;margin-bottom: 0px;padding-top: 5px;background-color: aliceblue;margin-top: 0;padding-bottom: 10px;">Our List:</h4>
+                    
+                                    <h2 class="h22" style="margin-top: 13px;margin-bottom: 20px;font-size: 0.7em;">Music</h2>         
+                                </header>
+                            
+                                <!-- CD -->
+                                <div class="cd">
+                                  <div class="cd-thumb" style="background-image: url('https://i.ytimg.com/vi/jTLhQf5KJSc/maxresdefault.jpg')">
+                                  </div>
+                                </div>
+                            
+                                <!-- Control -->
+                                <div class="control">
+                                  <div class="btn btn-repeat">
+                                    <i class="fas fa-redo"></i>
+                                  </div>
+                                  <div class="btn btn-prev">
+                                    <i class="fas fa-step-backward"></i>
+                                  </div>
+                                  <div class="btn btn-toggle-play">
+                                    <!-- <i class="fa-brands fa-google-play"></i> -->
+                                    <i class="fas fa-pause icon-pause"></i>
+                                    <i class="fas fa-play icon-play"></i>
+                                  </div>
+                                  <div class="btn btn-next">
+                                    <i class="fas fa-step-forward"></i>
+                                  </div>
+                                  <div class="btn btn-random">
+                                    <i class="fas fa-random"></i>
+                                  </div>
+                                </div>
+                            
+                                <input id="progress" class="progress" type="range" value="0" step="1" min="0" max="100">
+                            
+                                <audio id="audio" src=""></audio>
+                              </div>
+                            
+                              <!-- Playlist -->
+                              <div class="playlist">
+                                
+                              </div>
+                        </div>
+                    
+                        <div class="displayhistory" id="displayhistory">
+                            
+                        </div>
+                    
+                        <div class="yourlist" style="cursor: pointer;" id="yourlist">
+                            <div class="dashboard">
+                                
+                                <header>
+                                    <!-- <div class="nowplay" style="display: flex;background-color: #ec1f55;justify-content: space-between;">
+                                        <h4 style="text-align:center;display: flex;align-items:baseline;justify-content: center;color:white;font-size: 0.75em;margin-bottom: 0px;padding-top: 5px;margin-top: 0;padding-bottom: 10px;margin-left: 40px;">Our List:</h4>
+                                        <i class="fa-solid fa-delete-left" style="color: white;margin-top: 3px;" onclick="ourlist()"></i>
+                                    </div> -->
+                                    <h4 style="text-align:center;display: flex;align-items:baseline;justify-content: center;color:red;font-size: 0.75em;margin-bottom: 0px;padding-top: 5px;background-color: aliceblue;margin-top: 0;padding-bottom: 10px;">Your List:</h4>
+                    
+                                    <h2 class="yourh22" style="margin-top: 13px;margin-bottom: 20px;font-size: 0.7em;">Music</h2>
+                                
+                                </header>
+                            
+                                <!-- CD -->
+                                <div class="yourcd">
+                                  <div class="yourcd-thumb" style="background-image: url('https://i.ytimg.com/vi/jTLhQf5KJSc/maxresdefault.jpg')">
+                                  </div>
+                                </div>
+                            
+                                <!-- Control -->
+                                <div class="control">
+                                  <div class="btn yourbtn-repeat">
+                                    <i class="fas fa-redo"></i>
+                                  </div>
+                                  <div class="btn yourbtn-prev">
+                                    <i class="fas fa-step-backward"></i>
+                                  </div>
+                                  <div class="btn yourbtn-toggle-play">
+                                    <!-- <i class="fa-brands fa-google-play"></i> -->
+                                    <i class="fas fa-pause icon-pause"></i>
+                                    <i class="fas fa-play icon-play"></i>
+                                  </div>
+                                  <div class="btn yourbtn-next">
+                                    <i class="fas fa-step-forward"></i>
+                                  </div>
+                                  <div class="btn yourbtn-random">
+                                    <i class="fas fa-random"></i>
+                                  </div>
+                                </div>
+                            
+                                <input id="yourprogress" class="yourprogress" type="range" value="0" step="1" min="0" max="100">
+                            
+                                <audio id="youraudio" src=""></audio>
+                              </div>
+                            
+                              
+                              <div class="yourlistsong">
+                                
+                              </div>
+                        </div>
+                    
+                        
+                    </div>
+                
+            </div>
+
+        </div>
+
+        <div class="suggestion">
+
+
+            <div class="vietnam">
+                <h1>
+                    Vietnam
+                </h1>
+                <div class="vid">
+
+                </div>                
+                
+                
+              </div>
+
+
+            <div class="nature">
+                <h1>
+                    Nature
+                </h1>
+                <div class="vid">
+
+                </div>                
+                
+                
+              </div>
+
+
+            <div class="drive">
+                <h1>
+                    Drive With Me
+                </h1>
+               <div class="vid">
+
+               </div>
+              
+               
+                
+                
+              </div>
+
+              <div class="study">
+                <h1>
+                    Study With Me
+                </h1>
+                <div class="vid">
+
+                </div>
+              
+                
+                
+                
+              </div>
+
+              <div class="code">
+                <h1>
+                    Code With Me
+                </h1>
+                <div class="vid">
+
+                </div>
+
+            </div>
+
+              <div class="camping">
+                <h1>
+                    Camping
+                </h1>
+               <div class="vid">
+                   
+               </div>
+              
+              </div>
+
+              <div class="cooking">
+                <h1>
+                    Cooking
+                </h1>
+                <div class="vid">
+
+                </div>
+                             
+              </div>
+              <div class="anime">
+                <h1>
+                    Anime
+                </h1>
+                <div class="vid">
+                        
+                </div>
+                             
+              </div>
+
+              <div class="animal">
+                <h1>
+                    Animal
+                </h1>
+                <div class="vid">
+
+                </div>                
+                
+              </div>
+
+        </div>
+
+        <footer style="padding-top: 5% ;" class="footer">
+            <p style="margin-left: 2%;">Questions? Call 000-800-800-8888</p>
+            <p class="logo" style= "margin-left: 2%;">
+                <a href="https://www.facebook.com/nguyenquoc.khanh.9406/">
+                    <i class="fa-brands fa-facebook-square"></i>                    
+                </a>
+                <a href=""><i class="fa-brands fa-instagram-square"></i></a>
+                <a href=""><i class="fa-brands fa-twitter-square"></i></a>
+                <a href=""><i class="fa-brands fa-youtube-square"></i></i></a>
+            </p>
+            <div class="footer-cols">
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Investor Relations</a></li>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Speed Test</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Help Centre</a></li>
+                    <li><a href="#">Jobs</a></li>
+                    <li><a href="#">Cookie Preferences</a></li>
+                    <li><a href="#">Watch for Free</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Account</a></li>
+                    <li><a href="#">Ways to Watch</a></li>
+                    <li><a href="#">Corporate Information</a></li>
+                    <li><a href="#">Legal Notices</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Media Centre</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Netflix Originals</a></li>
+                </ul>
+            </div>
+        </footer>
+        <script src="src/login.js"></script>
+        <script src="src/register.js"></script>
+        <script src="src/checkkk.js"></script>
+        <script src ="src/nextes.js"></script>
+        <!-- <script src="src/createPlaylist.js"></script> -->
+        <!-- <script src="src/renderpl.js"></script>       -->
+        <script src="src/menu.js"></script>  
+        <script src="src/history.js"></script>
+        <script src="src/runmusic.js"></script>
+
+        <script src="video/addVietnamcode.js"></script>
+        <script src="video/addVidcode.js"></script>
+        <script src="video/addCookingcode.js"></script>
+        <script src="video/addAnimalcode.js"></script>
+        <script src="video/addDrivecode.js"></script>
+        <script src="video/addNaturecode.js"></script>
+        <script src="video/addStudycode.js"></script>
+        <script src="video/addAnimecode.js"></script>
+        <script src="video/addCampingcode.js"></script>
+
+        <script src="video/function.js"></script>
+    </body>
+    
+</html> 

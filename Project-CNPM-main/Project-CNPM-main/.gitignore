@@ -1,0 +1,4 @@
+node_modules
+BE/request.http
+.DS_Store
+workspace.code-workspace

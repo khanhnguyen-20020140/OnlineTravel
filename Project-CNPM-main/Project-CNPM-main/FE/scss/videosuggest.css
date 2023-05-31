@@ -1,0 +1,556 @@
+.suggestion{
+    /* position: relative; */
+    /* z-index: 1; */
+    width: 100%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    color: aliceblue;
+}
+
+
+
+
+
+.suggestion .code .vid .select{
+    width: 293px;height: 198px;
+}
+ 
+
+.suggestion .code .vid .select img {
+    height: 100%;
+    width: 100%;
+    border-radius: 8%;
+    /* object-fit: contain; */
+}
+
+.suggestion .code .vid .select video {
+    /* height: 100%;
+    width: 100%; */
+    border-radius: 8%;
+    /* object-fit: contain; */
+}
+
+.suggestion .code .vid .select :hover {
+    height: 100%;
+    width: 100%;
+    background-color:black;
+    border-radius: 8%;
+    transform: scale(1.8);
+    
+    
+}
+
+
+
+
+
+
+
+.suggestion .code{
+    display: block;
+    
+}
+
+
+
+
+
+.suggestion .code .vid .select{
+    width: 293px;height: 198px;
+}
+ 
+
+.suggestion .code .vid .select img {
+    height: 100%;
+    width: 100%;
+    border-radius: 8%;
+    /* object-fit: contain; */
+}
+
+.suggestion .code .vid .select video {
+    /* height: 100%;
+    width: 100%; */
+    border-radius: 8%;
+    /* object-fit: contain; */
+}
+
+.suggestion .code .vid .select :hover {
+    height: 100%;
+    width: 100%;
+    background-color:black;
+    border-radius: 8%;
+    transform: scale(1.8);
+    /* z-index: 5; */
+    
+}
+
+
+
+
+
+.suggestion .drive .vid {
+    
+    display: flex;
+    flex-direction: row;
+    /* overflow-x: auto; */
+    justify-content: space-around;
+    flex-wrap: wrap;
+   
+}
+
+
+body{
+    overflow-x: hidden;
+}
+
+.suggestion .drive{
+    /* overflow-y: scroll; */
+    display: block;
+    /* overflow-x: scroll; */
+    /* overflow-x: auto; */
+}
+
+.suggestion .asia{
+    display: block;
+}
+
+
+
+.suggestion .drive .vid .select{
+    width: 293px;height: 198px;
+}
+ 
+
+.suggestion .drive .vid .select img {
+    height: 100%;
+    width: 100%;
+    border-radius: 8%;
+    /* object-fit: contain; */
+}
+
+.suggestion .drive .vid .select video {
+    /* height: 100%;
+    width: 100%; */
+    border-radius: 8%;
+    /* object-fit: contain; */
+}
+
+.suggestion .drive .vid .select :hover {
+    height: 100%;
+    width: 100%;
+    background-color:black;
+    border-radius: 8%;
+    transform: scale(1.8);
+    
+    
+}
+
+
+/* study */
+
+.suggestion .study .vid {
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+   
+}
+
+
+
+.suggestion .study{
+    display: block;
+    
+}
+
+.suggestion .asia{
+    display: block;
+}
+
+
+
+.suggestion .study .vid .select{
+    width: 293px;height: 198px;
+}
+ 
+
+.suggestion .study .vid .select img {
+    height: 100%;
+    width: 100%;
+    border-radius: 8%;
+    /* object-fit: contain; */
+}
+
+.suggestion .study .vid .select video {
+    /* height: 100%;
+    width: 100%; */
+    border-radius: 8%;
+    /* object-fit: contain; */
+}
+
+.suggestion .study .vid .select :hover {
+    height: 100%;
+    width: 100%;
+    background-color:black;
+    border-radius: 8%;
+    transform: scale(1.8);
+    /* z-index: 5; */
+    
+}
+
+
+
+
+/* nature */
+.suggestion .nature .vid {
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+   
+}
+
+.suggestion .asia .vid {
+    /* margin-left: 2%; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+    
+}
+
+.suggestion .nature{
+    display: block;
+    
+}
+
+.suggestion .asia{
+    display: block;
+}
+
+
+
+.suggestion .nature .vid .select{
+    width: 293px;height: 198px;
+}
+ 
+
+.suggestion .nature .vid .select img {
+    height: 100%;
+    width: 100%;
+    border-radius: 8%;
+    /* object-fit: contain; */
+}
+
+.suggestion .nature .vid .select video {
+    /* height: 100%;
+    width: 100%; */
+    border-radius: 8%;
+    /* object-fit: contain; */
+}
+
+.suggestion .nature .vid .select :hover {
+    height: 100%;
+    width: 100%;
+    background-color:black;
+    border-radius: 8%;
+    transform: scale(1.8);
+    /* z-index: 5; */
+    
+}
+
+
+
+
+
+/* anime */
+.suggestion .anime .vid {
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+   
+}
+
+
+.suggestion .anime{
+    display: block;
+    
+}
+
+
+
+
+
+.suggestion .anime .vid .select{
+    width: 293px;height: 198px;
+}
+ 
+
+.suggestion .anime .vid .select img {
+    height: 100%;
+    width: 100%;
+    border-radius: 8%;
+    /* object-fit: contain; */
+}
+
+.suggestion .anime .vid .select video {
+    /* height: 100%;
+    width: 100%; */
+    border-radius: 8%;
+    /* object-fit: contain; */
+}
+
+.suggestion .anime .vid .select :hover {
+    height: 100%;
+    width: 100%;
+    background-color:black;
+    border-radius: 8%;
+    transform: scale(1.8);
+    /* z-index: 5; */
+    
+}
+
+
+
+.suggestion .camping .vid {
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+   
+}
+
+
+
+.suggestion .camping{
+    display: block;
+    
+}
+
+
+
+
+
+.suggestion .camping .vid .select{
+    width: 293px;height: 198px;
+}
+ 
+
+.suggestion .camping .vid .select img {
+    height: 100%;
+    width: 100%;
+    border-radius: 8%;
+    /* object-fit: contain; */
+}
+
+.suggestion .camping .vid .select video {
+    /* height: 100%;
+    width: 100%; */
+    border-radius: 8%;
+    /* object-fit: contain; */
+}
+
+.suggestion .camping .vid .select :hover {
+    height: 100%;
+    width: 100%;
+    background-color:black;
+    border-radius: 8%;
+    transform: scale(1.8);
+    /* z-index: 5; */
+    
+}
+
+
+
+
+
+
+
+
+.suggestion .cooking .vid {
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+   
+}
+
+.suggestion .asia .vid {
+    /* margin-left: 2%; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+    
+}
+
+.suggestion .cooking{
+    display: block;
+    
+}
+
+.suggestion .asia{
+    display: block;
+}
+
+
+
+.suggestion .cooking .vid .select{
+    width: 293px;height: 198px;
+}
+ 
+
+.suggestion .cooking .vid .select img {
+    height: 100%;
+    width: 100%;
+    border-radius: 8%;
+    /* object-fit: contain; */
+}
+
+.suggestion .cooking .vid .select video {
+    /* height: 100%;
+    width: 100%; */
+    border-radius: 8%;
+    /* object-fit: contain; */
+}
+
+.suggestion .cooking .vid .select :hover {
+    height: 100%;
+    width: 100%;
+    background-color:black;
+    border-radius: 8%;
+    transform: scale(1.8);
+    /* z-index: 5; */
+    
+}
+
+
+
+.suggestion .animal .vid {
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+   
+}
+
+.suggestion .asia .vid {
+    /* margin-left: 2%; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+    
+}
+
+.suggestion .animal{
+    display: block;
+    
+}
+
+.suggestion .asia{
+    display: block;
+}
+
+
+
+.suggestion .animal .vid .select{
+    width: 293px;height: 198px;
+}
+ 
+
+.suggestion .animal .vid .select img {
+    height: 100%;
+    width: 100%;
+    border-radius: 8%;
+    /* object-fit: contain; */
+}
+
+.suggestion .animal .vid .select video {
+    /* height: 100%;
+    width: 100%; */
+    border-radius: 8%;
+    /* object-fit: contain; */
+}
+
+.suggestion .animal .vid .select :hover {
+    height: 100%;
+    width: 100%;
+    background-color:black;
+    border-radius: 8%;
+    transform: scale(1.8);
+    /* z-index: 5; */
+    
+}
+
+.suggestion .code .vid {
+    /* margin-left: 2%; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+    
+}
+
+
+
+.suggestion .vietnam .vid {
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+   
+}
+
+
+
+.suggestion .vietnam{
+    display: block;
+    
+}
+
+
+
+
+
+.suggestion .vietnam .vid .select{
+    width: 293px;height: 198px;
+}
+ 
+
+.suggestion .vietnam .vid .select img {
+    height: 100%;
+    width: 100%;
+    border-radius: 8%;
+    /* object-fit: contain; */
+}
+
+.suggestion .vietnam .vid .select video {
+    /* height: 100%;
+    width: 100%; */
+    border-radius: 8%;
+    /* object-fit: contain; */
+}
+
+.suggestion .vietnam .vid .select :hover {
+    height: 100%;
+    width: 100%;
+    background-color:black;
+    border-radius: 8%;
+    transform: scale(1.8);
+    /* z-index: 5; */
+    
+}

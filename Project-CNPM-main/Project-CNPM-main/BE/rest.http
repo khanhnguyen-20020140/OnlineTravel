@@ -1,0 +1,144 @@
+
+###
+POST http://localhost:3000/api/user/login
+Content-Type: application/json
+
+{
+    "username": "transon2222222@gmail.com",
+    "password": "123456"
+}
+
+###
+POST   http://localhost:3000/api/user/register
+Content-Type: application/json
+
+{
+    "username": "transon@gmail.com",
+    "password": "123456"
+}
+
+### logout
+POST   http://localhost:3000/api/user/logout
+Authorization: Bearer nussssll
+Content-Type: application/json
+
+{
+    "id":"625ada0e0fdf20e6a3099ba2"
+}
+
+
+
+
+###get all user
+GET http://localhost:3000/api/admin/user
+Content-Type: application/json
+
+### delete user
+DELETE http://localhost:3000/api/admin/user/6260d196066cb93673d1bf03
+Content-Type: application/json
+
+
+
+
+### get all music
+GET http://localhost:3000/api/admin/music
+Content-Type: application/json
+
+
+###addd music
+POST  http://localhost:3000/api/admin/music
+Content-Type: application/json
+
+{
+    "name":"test",
+    "singer": "Duy Hien",
+    "path": "https://www.dropbox.com/s/raw/ut75jyx4r27sg4e/Dudududu.mp3",
+    "image": "https://i.vietgiaitri.com/2020/6/19/lisa-va-jisoo-ket-man-chuoi-video-teaser-ca-nhan-ngay-comeback-cua-black-pink-dang-den-gan-3e1-5020492.jpg"
+}
+
+### get all video
+GET http://localhost:3000/api/admin/video
+Content-Type: application/json
+
+
+###add video
+POST  http://localhost:3000/api/admin/video
+Content-Type: application/json
+
+{
+    "title":"test",
+    "path": "https://www.dropbox.com/s/raw/ut75jyx4r27sg4e/Dudududu.mp4",
+    "image": "https://i.vietgiaitri.com/2020/6/19/lisa-va-jisoo-ket-"
+}
+
+
+
+
+###
+GET http://localhost:3000/api/user/playlist
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNWVkNWIwNTBjOTEyNTM1MjU0Y2RkYiIsImlhdCI6MTY1MjM3NDgzOX0._vzy4pUql-tO6ZAuFRLqizw1ZJL_g2yI9PlviheeVAU
+Content-Type: application/json
+
+{
+    "id": "625ed5b050c912535254cddb"
+}
+
+###
+POST http://localhost:3000/api/user/playlist/add
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNWVkNWIwNTBjOTEyNTM1MjU0Y2RkYiIsImlhdCI6MTY1MjM3NDgzOX0._vzy4pUql-tO6ZAuFRLqizw1ZJL_g2yI9PlviheeVAU
+Content-Type: application/json
+
+{
+    "id": "625ed5b050c912535254cddb",
+    "name": "Play list 1",
+    "song": "song"
+}
+
+### play 1 song
+POST http://localhost:3000/api/user/play/625ed5b050c912535254cddb
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNWVkNWIwNTBjOTEyNTM1MjU0Y2RkYiIsImlhdCI6MTY1MjM3NDgzOX0._vzy4pUql-tO6ZAuFRLqizw1ZJL_g2yI9PlviheeVAU
+Content-Type: application/json
+
+{
+    "id" : "627a288d580f05e17f9fbf63"
+}
+
+### get history 1 user
+GET http://localhost:3000/api/user/history
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNWVkNWIwNTBjOTEyNTM1MjU0Y2RkYiIsImlhdCI6MTY1MjM3NDgzOX0._vzy4pUql-tO6ZAuFRLqizw1ZJL_g2yI9PlviheeVAU
+Content-Type: application/json
+
+{
+    "id":"625ed5b050c912535254cddb"
+}
+
+### add song to your list
+POST http://localhost:3000/api/user/yourlist/add
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNWVkNWIwNTBjOTEyNTM1MjU0Y2RkYiIsImlhdCI6MTY1MjM3NDgzOX0._vzy4pUql-tO6ZAuFRLqizw1ZJL_g2yI9PlviheeVAU
+Content-Type: application/json
+
+{
+    "id":"627a289e580f05e17f9fbf64"
+}
+
+### delete song in your list
+DELETE  http://localhost:3000/api/user/yourlist/delete
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNWVkNWIwNTBjOTEyNTM1MjU0Y2RkYiIsImlhdCI6MTY1MjM3NDgzOX0._vzy4pUql-tO6ZAuFRLqizw1ZJL_g2yI9PlviheeVAU
+Content-Type: application/json
+
+{
+    "id":"627a289e580f05e17f9fbf64"
+}
+
+
+###get your list
+GET http://localhost:3000/api/user/yourlist
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNWVkNWIwNTBjOTEyNTM1MjU0Y2RkYiIsImlhdCI6MTY1MjM3NDgzOX0._vzy4pUql-tO6ZAuFRLqizw1ZJL_g2yI9PlviheeVAU
+Content-Type: application/json
+
+{
+    
+}
+
+
+

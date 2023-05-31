@@ -1,0 +1,61 @@
+a{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+ul{
+    list-style: none;
+}
+
+
+
+.footer{
+    width: 100%;
+    
+    overflow: auto;
+    display: flex;
+    text-decoration: none;
+    background-color: black;
+}
+
+.footer .fa-brands {
+    font-size: x-large;
+    background-color: black;
+    margin-right: 8px;
+}
+
+.footer ,
+.footer a{
+    color: #999999;
+    font-size: 0.9rem;
+}
+
+.footer p{
+    margin-bottom: 1.5rem;
+}
+
+.footer .footer-cols{
+    display: grid;
+    grid-template-columns: repeat(4 , 1fr);
+    grid-gap: 2rem;
+}
+
+.footer li{
+    line-height: 2.4;
+}
+
+h6 {
+    color: aliceblue;
+    font-size: 1.3vw;
+    margin-top: 0;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+}
+
+h1{
+    margin-left: 1%;
+    font-size: 2vw;
+}
